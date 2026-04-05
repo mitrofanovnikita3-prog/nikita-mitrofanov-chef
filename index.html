@@ -778,12 +778,6 @@
   <section id="gallery">
     <div class="gallery-head">
       <span class="section-label fu">Блюда</span>
-      <div class="gallery-tabs fu d1">
-        <button class="g-tab active" data-filter="all">Все</button>
-        <button class="g-tab" data-filter="main">Основное</button>
-        <button class="g-tab" data-filter="dessert">Десерты</button>
-        <button class="g-tab" data-filter="starter">Закуски</button>
-      </div>
     </div>
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
@@ -837,8 +831,8 @@
 
     <div class="events-bottom fu">
       <p class="ev-coming">Следующий вечер — скоро</p>
-      <p class="ev-coming-sub">Анонсы в Telegram и Instagram</p>
-      <button class="subscribe-btn">Подписаться на анонсы</button>
+      <p class="ev-coming-sub">Анонсы в Telegram</p>
+      <a href="https://t.me/havaite" target="_blank" class="subscribe-btn">Подписаться на анонсы</a>
     </div>
   </section>
 
@@ -847,6 +841,7 @@
     <div class="contact-inner">
       <h2 class="fu">Связаться с Никитой</h2>
       <span class="contact-sub fu d1">Ужины · Мастер-классы · Сотрудничество</span>
+      <p class="fu d1" style="margin-bottom:32px;font-size:15px;color:var(--t3)"><a href="tel:+79643772229" style="color:var(--t2)">+7 964 377-22-29</a> · <a href="https://t.me/havaite" target="_blank" style="color:var(--accent)">Telegram</a></p>
 
       <form class="bform fu d2" id="bForm" novalidate>
         <div class="ff" id="ff-name">
@@ -885,8 +880,8 @@
     <div class="footer-name">Никита Митрофанов</div>
     <div class="footer-tagline">Шеф-повар · Москва</div>
     <div class="footer-socials">
-      <a href="#" target="_blank" rel="noopener">Telegram</a>
-      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://t.me/havaite" target="_blank" rel="noopener">Telegram</a>
+      <a href="tel:+79643772229">+7 964 377-22-29</a>
     </div>
     <div class="footer-copy">© 2025 Никита Митрофанов</div>
   </footer>
@@ -894,18 +889,9 @@
   <script>
     /* ── GALLERY ── */
     const dishes = [
-      { name: 'Шоколадный мильфёй',     cat: 'dessert', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-51.jpg' },
-      { name: 'Тартар с трюфелем',      cat: 'starter', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-55.jpg' },
-      { name: 'Профитроль с фуа-гра',  cat: 'starter', ratio: '16/9' },
-      { name: 'Веллингтон',             cat: 'main',    ratio: '1/1.4' },
-      { name: 'Лосось с цукини',        cat: 'main',    ratio: '1/1' },
-      { name: 'Перепел с тыквой',       cat: 'main',    ratio: '16/9' },
-      { name: 'Ризотто с трюфелем',     cat: 'main',    ratio: '1/1.4' },
-      { name: 'Чебурек с креветкой',    cat: 'starter', ratio: '1/1' },
-      { name: 'Красный куб',            cat: 'dessert', ratio: '16/9' },
-      { name: 'Брискет',                cat: 'main',    ratio: '1/1.4' },
-      { name: 'Тартар с бурратой',      cat: 'starter', ratio: '1/1' },
-      { name: 'Нигири авторские',       cat: 'starter', ratio: '16/9' },
+      { name: 'Шоколадная слоёная бриошь с мороженым из бородинского хлеба', cat: 'dessert', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-51.jpg' },
+      { name: 'Тар-тар из говядины на меренге из фо бо', cat: 'starter', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-55.jpg' },
+      { name: 'Рулет из судака',        cat: 'main',    ratio: '16/10', img: 'фото блюд для сайта/рулет судак.jpg' },
     ];
     const grads = [
       '150deg,#181b20,#20242a','200deg,#161920,#1e2228',
