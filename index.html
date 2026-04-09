@@ -583,6 +583,70 @@
       border-color: var(--t1);
     }
 
+    /* ── PAST EVENTS ─── */
+    #past-events { padding: var(--sp) 80px; }
+    .past-head {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+    }
+    .past-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      color: var(--t1);
+      margin-bottom: 16px;
+    }
+    .past-head p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--t3);
+      line-height: 1.9;
+      max-width: 520px;
+    }
+    .past-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .past-card {
+      background: var(--surface);
+      border: 1px solid var(--border-s);
+      padding: 32px 28px;
+      transition: border-color 0.4s;
+    }
+    .past-card:hover { border-color: var(--border-d); }
+    .past-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      background: var(--bg);
+      color: var(--t4);
+      border: 1px solid var(--border-s);
+      padding: 3px 10px;
+      margin-bottom: 16px;
+    }
+    .past-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--t1);
+      line-height: 1.35;
+    }
+    @media (max-width: 768px) {
+      #past-events { padding: 80px 24px; }
+      .past-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      #past-events { padding: 64px 20px; }
+      .past-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── CONTACT ─── */
     #contact { padding: var(--sp) 40px; }
     .contact-inner {
@@ -817,9 +881,9 @@
         <span class="ln1">Никита</span>
         <span class="ln2">Митрофанов</span>
       </div>
-      <p class="hero-desc reveal d1">Пятнадцать лет на профессиональной кухне. Ферментация, сезонный продукт и сложные техники — в блюдах, которые считываются сразу.</p>
+      <p class="hero-desc reveal d1">Пятнадцать лет на кухне — от открытого гриля до собственных заквасок. Готовлю то, что требует времени: долгая ферментация, ремесленный хлеб, блюда, в которых сложное прячется за простым.</p>
       <a href="#contact" class="hero-cta reveal d2">
-        Познакомиться
+        Написать Никите
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
     </div>
@@ -856,8 +920,9 @@
       <div class="about-text">
         <span class="section-label reveal">О шефе</span>
         <h2 class="reveal d1">Кухня, где процесс<br>важнее <em>эффекта</em></h2>
-        <p class="reveal d2">Никита Митрофанов — шеф-повар с пятнадцатилетним опытом на профессиональной кухне. Работает с сезонным продуктом, соединяет ингредиенты через ферментацию, сложные техники и многоступенчатые процессы — но с результатом, который понятен и считывается сразу.</p>
-        <p class="reveal d3">За последние пять лет — более пятидесяти закрытых гастрономических вечеров и двух тысяч мастер-классов. Каждый проект — отдельная история: от камерного ужина на двенадцать человек до корпоративного формата.</p>
+        <p class="reveal d2">Никита Митрофанов — шеф-повар с пятнадцатилетним опытом в индустрии. Прошёл путь от горячего цеха до руководства кухней и запуска ресторанных проектов с нуля — от первой идеи на салфетке до первого гостя за столом. Более 2 000 мероприятий — от камерных ужинов на двенадцать человек до фестивалей на тысячу.</p>
+        <p class="reveal d3">Сейчас в фокусе — сложная ферментация: гарумы, закваски, выдержанные соусы. Всё, что требует терпения и времени — а время здесь такой же ингредиент, как соль. Параллельно — крафтовый ресторанный хлеб на длительной расстойке, который стал отдельным направлением в работе.</p>
+        <p class="reveal d4">Работает с цифрами так же внимательно, как с продуктом — за каждым красивым блюдом стоит отлаженный процесс.</p>
       </div>
       <div class="stats-grid reveal d2">
         <div class="stat-card">
@@ -866,11 +931,11 @@
         </div>
         <div class="stat-card">
           <div class="stat-num">2 000+</div>
-          <div class="stat-lbl">мастер-классов</div>
+          <div class="stat-lbl">мероприятий</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">50+</div>
-          <div class="stat-lbl">закрытых ужинов</div>
+          <div class="stat-num">3 000+</div>
+          <div class="stat-lbl">гостей</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">200+</div>
@@ -886,17 +951,17 @@
       <div class="phil-item reveal">
         <span class="phil-num">01</span>
         <h3>Продукт как герой</h3>
-        <p>Техника — это слуга, не хозяин. Задача шефа — не усложнить, а обнажить. Найти в продукте то, что он хотел сказать с самого начала, и не мешать ему это сделать.</p>
+        <p>Задача шефа — не усложнить, а обнажить. Сезонная тыква с фермы, дикий гриб после первых заморозков — найти в продукте то, что он хотел сказать, и не мешать.</p>
       </div>
       <div class="phil-item reveal d1">
         <span class="phil-num">02</span>
         <h3>Ферментация и время</h3>
-        <p>Лучшие вкусы рождаются не на сковороде, а в ожидании. Мисо, кимчи, уксусы — каждый процесс требует терпения. Время — такой же ингредиент, как соль.</p>
+        <p>Мисо, которому полгода. Хлеб на 48-часовой закваске. Соус из ферментированной сливы трёхмесячной выдержки. Лучшие вкусы рождаются не на сковороде, а в ожидании.</p>
       </div>
       <div class="phil-item reveal d2">
         <span class="phil-num">03</span>
         <h3>Контраст как язык</h3>
-        <p>Холодное рядом с горячим. Хрустящее в мягком. Горечь в сладком. Когда два противоположных элемента встречаются правильно, возникает третье измерение.</p>
+        <p>Холодное рядом с горячим. Хрустящее в бархатистом. Горечь в тягучей сладости. Когда два противоположных элемента встречаются правильно — возникает третье измерение.</p>
       </div>
     </div>
   </section>
@@ -921,17 +986,17 @@
       <div class="fmt-card reveal">
         <span class="fmt-num">01</span>
         <div class="fmt-title">Закрытый ужин</div>
-        <div class="fmt-desc">Камерный гастрономический вечер на 8–16 человек. Авторское меню из 5–8 подач, подобранное под сезон и повод.</div>
+        <div class="fmt-desc">Камерный вечер на 8–16 человек. Несколько перемен блюд, одна история на весь ужин. Меню не повторяется — шеф собирает его под сезон и повод.</div>
       </div>
       <div class="fmt-card reveal d1">
         <span class="fmt-num">02</span>
         <div class="fmt-title">Мастер-класс</div>
-        <div class="fmt-desc">Практическое занятие для любого уровня — от домашних поваров до профессионалов. Техники, продукты, разбор ошибок.</div>
+        <div class="fmt-desc">Не рецепт, а понимание: почему тесто дышит, зачем зерну время, как работает жар. Уйдёте не с записью — а с руками, которые запомнили.</div>
       </div>
       <div class="fmt-card reveal d2">
         <span class="fmt-num">03</span>
         <div class="fmt-title">Консультация</div>
-        <div class="fmt-desc">Разработка меню, настройка кухонных процессов, запуск ресторанного проекта. Точечно или на сопровождении.</div>
+        <div class="fmt-desc">Запуск ресторана, инженерия меню, управление себестоимостью. Помогаю проектам найти баланс между «вау» на тарелке и здоровой маржой.</div>
       </div>
     </div>
 
@@ -945,12 +1010,44 @@
     </div>
   </section>
 
+  <!-- ── PAST EVENTS ── -->
+  <section id="past-events">
+    <div class="past-head">
+      <span class="section-label reveal">Избранные вечера</span>
+      <h2 class="reveal d1">Прошедшие ужины</h2>
+      <p class="reveal d2">Каждый вечер — отдельная тема, отдельное меню. Ни один не повторяется.</p>
+    </div>
+
+    <div class="past-grid">
+      <div class="past-card reveal">
+        <div class="past-tag">Гастроужин</div>
+        <div class="past-title">Буррата с томатами, испанские тапас, свиная шея с демигласом, сорбет и эклеры</div>
+      </div>
+      <div class="past-card reveal d1">
+        <div class="past-tag">Гастроужин</div>
+        <div class="past-title">Тар-тар из тунца, фуа-гра с малиной, равиоли, гречневая лапша, десерт шу</div>
+      </div>
+      <div class="past-card reveal d2">
+        <div class="past-tag">Гастроужин</div>
+        <div class="past-title">Скумбрия су-вид, гель из лука, ризотто с белыми грибами, мильфей с малиной</div>
+      </div>
+      <div class="past-card reveal">
+        <div class="past-tag">Гастроужин</div>
+        <div class="past-title">Гребешок, карпаччо, стейк миньон с гратеном, сорбет и тыква</div>
+      </div>
+      <div class="past-card reveal d1">
+        <div class="past-tag">Новый год</div>
+        <div class="past-title">Новогодний гастроужин — сет из 8 блюд</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── CONTACT ── -->
   <section id="contact">
     <div class="contact-inner">
       <h2 class="reveal">Написать Никите</h2>
       <span class="contact-sub reveal d1">Начинается с разговора</span>
-      <p class="contact-note reveal d1">Расскажите, что вам интересно — отвечу в течение дня. Или напишите напрямую в Telegram.</p>
+      <p class="contact-note reveal d1">Расскажите, что вы задумали — предложу формат и меню под ваш вечер. Отвечу в течение дня.</p>
 
       <div class="contact-links reveal d2">
         <a href="https://t.me/havaite" target="_blank">Telegram</a>
@@ -992,7 +1089,7 @@
 
   <footer id="footer">
     <div class="footer-name">Никита Митрофанов</div>
-    <div class="footer-tagline">Шеф-повар · Москва</div>
+    <div class="footer-tagline">Шеф-повар · Санкт-Петербург</div>
     <div class="footer-socials">
       <a href="https://t.me/havaite" target="_blank" rel="noopener">Telegram</a>
       <a href="tel:+79643772229">Телефон</a>
