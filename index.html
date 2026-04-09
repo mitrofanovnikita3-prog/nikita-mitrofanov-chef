@@ -6,51 +6,48 @@
   <meta name="description" content="Никита Митрофанов — шеф-повар, авторская кухня, гастрономические ужины и мастер-классы в Москве.">
   <meta property="og:title" content="Никита Митрофанов — Шеф-повар">
   <meta property="og:description" content="Сезонный продукт, ферментация, сложные техники — понятный результат.">
-  <meta property="og:image" content="https://placehold.co/1200x630/f0e9de/2a2218?text=Nikita+Mitrofanov">
+  <meta property="og:image" content="никита.jpg">
   <title>Никита Митрофанов — Шеф-повар</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg:          #111316;
-      --surface:     #16181c;
-      --surface-alt: #1a1d22;
-      --border:      #2a2e36;
-      --border-s:    #22252c;
-      --border-m:    #262a32;
-      --border-d:    #30353e;
-      --t1:          #e4e6ea;
-      --t2:          #9ba0aa;
-      --t3:          #7c828e;
-      --t4:          #5c6270;
-      --t5:          #42474f;
-      --accent:      #4a8fe7;
-      --accent-h:    #5ea0f4;
-      --sage:        #5b9bd5;
-      --sage-l:      #78b0e4;
-      --clay:        #7c8594;
-      --clay-l:      #929aaa;
-      --rust:        #e07050;
-      --cream:       #c8ccd4;
-      --error:       #d04040;
-      --serif:       'Lora', Georgia, serif;
+      --bg:          #141210;
+      --surface:     #1a1815;
+      --surface-alt: #1e1c18;
+      --border:      #2e2a24;
+      --border-s:    #262219;
+      --border-m:    #302b23;
+      --border-d:    #3a342b;
+      --t1:          #e8e4de;
+      --t2:          #a8a298;
+      --t3:          #847e74;
+      --t4:          #6a6459;
+      --t5:          #4a453d;
+      --accent:      #c17a50;
+      --accent-h:    #d48b60;
+      --accent-soft: rgba(193,122,80,0.12);
+      --gold:        #c4a35a;
+      --cream:       #d4cdc2;
+      --error:       #c04030;
+      --serif:       'Cormorant Garamond', Georgia, serif;
       --sans:        'Plus Jakarta Sans', system-ui, sans-serif;
-      --lbl:         11px;
-      --lbl-sp:      0.18em;
-      --sp:          120px;
+      --lbl:         10px;
+      --lbl-sp:      0.2em;
+      --sp:          140px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
     body {
       background: var(--bg);
       color: var(--t1);
       font-family: var(--sans);
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -59,20 +56,34 @@
     button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
     ul { list-style: none; }
 
-    .fu {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    /* ── GRAIN OVERLAY ─── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
     }
-    .fu.in { opacity: 1; transform: translateY(0); }
-    .fu.d1 { transition-delay: 0.10s; }
-    .fu.d2 { transition-delay: 0.20s; }
-    .fu.d3 { transition-delay: 0.30s; }
-    .fu.d4 { transition-delay: 0.40s; }
-    .fu.d5 { transition-delay: 0.50s; }
+
+    /* ── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.12s; }
+    .reveal.d2 { transition-delay: 0.24s; }
+    .reveal.d3 { transition-delay: 0.36s; }
+    .reveal.d4 { transition-delay: 0.48s; }
+    .reveal.d5 { transition-delay: 0.60s; }
 
     @media (prefers-reduced-motion: reduce) {
-      .fu { opacity: 1; transform: none; transition: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
@@ -85,6 +96,39 @@
     }
     .shake { animation: shake 0.4s ease; }
 
+    /* ── MARQUEE ─── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border-s);
+      border-bottom: 1px solid var(--border-s);
+      padding: 18px 0;
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+    .marquee-track span {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--t4);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      padding: 0 24px;
+    }
+    .marquee-track span::after {
+      content: '·';
+      margin-left: 24px;
+      color: var(--t5);
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* ── NAV ─── */
     #nav {
       position: fixed;
@@ -95,136 +139,178 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 48px;
-      background: rgba(17,19,22,0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(20,18,16,0.92);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
       border-bottom: 1px solid var(--border-s);
     }
     .nav-logo {
       font-family: var(--serif);
-      font-size: 16px;
-      letter-spacing: 0.01em;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
       color: var(--t1);
     }
-    #nav ul { display: flex; gap: 36px; align-items: center; }
-    #nav ul a {
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a {
       font-size: var(--lbl);
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: var(--lbl-sp);
       color: var(--t4);
+      transition: color 0.4s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--t1); }
+
+    /* ── BURGER ─── */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 24px;
+      cursor: pointer;
+      z-index: 301;
+    }
+    .burger span {
+      display: block;
+      height: 1.5px;
+      background: var(--t1);
+      transition: transform 0.4s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(20,18,16,0.98);
+      backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--t2);
       transition: color 0.3s;
     }
-    #nav ul a:hover,
-    #nav ul a.active { color: var(--t1); }
+    .mobile-menu a:hover { color: var(--t1); }
 
     /* ── HERO ─── */
     #hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 80px 80px 60px;
+      justify-content: flex-end;
+      padding: 0 80px 80px;
       position: relative;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .hero-video::after {
+      content: '';
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(to right, rgba(8,9,11,0.92) 0%, rgba(8,9,11,0.7) 40%, rgba(8,9,11,0.4) 70%, rgba(8,9,11,0.2) 100%),
-        linear-gradient(to bottom, rgba(8,9,11,0) 60%, var(--bg) 100%),
-        url('никита.jpg') center/cover no-repeat;
+        linear-gradient(to right, rgba(20,18,16,0.88) 0%, rgba(20,18,16,0.6) 50%, rgba(20,18,16,0.4) 100%),
+        linear-gradient(to top, var(--bg) 0%, rgba(20,18,16,0.3) 40%, transparent 70%);
     }
     .hero-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
     }
     .hero-eyebrow {
       font-size: var(--lbl);
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: var(--sage);
-      margin-bottom: 36px;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+      margin-bottom: 28px;
       display: block;
     }
     .hero-name {
       display: flex;
       flex-direction: column;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .hero-name span {
       font-family: var(--serif);
-      font-size: clamp(48px, 6vw, 88px);
-      line-height: 0.92;
-      letter-spacing: -0.03em;
+      font-size: clamp(52px, 7vw, 96px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      font-weight: 300;
       display: block;
     }
     .hero-name .ln1 { color: var(--t1); }
-    .hero-name .ln2 { color: var(--clay); }
-    .hero-subtitle {
-      font-size: 13px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.28em;
-      color: var(--t4);
-      margin-bottom: 32px;
-      display: block;
-    }
+    .hero-name .ln2 { color: var(--t3); }
     .hero-desc {
       font-size: 16px;
       font-weight: 300;
       color: var(--t2);
-      max-width: 480px;
+      max-width: 440px;
       line-height: 1.9;
+      margin-bottom: 36px;
     }
-    .hero-photo {
-      margin-bottom: 32px;
-    }
-    .hero-photo img {
-      width: 280px;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.25));
-      border-radius: 50%;
-    }
-    .hero-dish {
-      display: flex;
-      justify-content: center;
+    .hero-cta {
+      display: inline-flex;
       align-items: center;
-      grid-row: 1 / 3;
-      grid-column: 2;
-      position: relative;
+      gap: 12px;
+      border: 1px solid var(--border-d);
+      padding: 14px 32px;
+      font-size: var(--lbl);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: var(--lbl-sp);
+      color: var(--t2);
+      transition: border-color 0.4s, color 0.4s, background 0.4s;
     }
-    .hero-dish img {
-      width: 100%;
-      max-width: 640px;
-      object-fit: cover;
-      display: block;
-      position: relative;
-      z-index: 1;
+    .hero-cta:hover {
+      background: var(--t1);
+      color: var(--bg);
+      border-color: var(--t1);
     }
-    .hero-dish::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      z-index: 2;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse at center, transparent 35%, rgba(8,9,11,0.6) 65%, var(--bg) 85%);
+    .hero-cta svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s;
     }
+    .hero-cta:hover svg { transform: translateX(3px); }
     .hero-scroll {
       position: absolute;
-      bottom: 40px;
+      bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 1;
     }
     .scroll-line {
       width: 1px;
       height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--border));
-      animation: scrollPulse 2s ease-in-out infinite;
+      background: linear-gradient(to bottom, transparent, var(--border-d));
+      animation: scrollPulse 2.5s ease-in-out infinite;
     }
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
     }
 
     /* ── SECTION LABEL ─── */
@@ -234,7 +320,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: var(--lbl-sp);
-      color: var(--sage);
+      color: var(--accent);
       margin-bottom: 24px;
     }
 
@@ -250,11 +336,16 @@
     }
     .about-text h2 {
       font-family: var(--serif);
-      font-size: clamp(36px, 4vw, 52px);
-      line-height: 1.1;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1.08;
       letter-spacing: -0.02em;
+      font-weight: 300;
       color: var(--t1);
-      margin-bottom: 36px;
+      margin-bottom: 40px;
+    }
+    .about-text h2 em {
+      font-style: italic;
+      color: var(--accent);
     }
     .about-text p {
       font-size: 16px;
@@ -272,19 +363,22 @@
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border-s);
-      padding: 32px 28px;
+      padding: 36px 28px;
+      transition: border-color 0.4s;
     }
-    .stat-card:nth-child(1) { border-top: 3px solid var(--accent); }
-    .stat-card:nth-child(2) { border-top: 3px solid var(--sage); }
-    .stat-card:nth-child(3) { border-top: 3px solid var(--clay); }
-    .stat-card:nth-child(4) { border-top: 3px solid var(--rust); }
+    .stat-card:hover { border-color: var(--border-d); }
+    .stat-card:nth-child(1) { border-top: 2px solid var(--accent); }
+    .stat-card:nth-child(2) { border-top: 2px solid var(--gold); }
+    .stat-card:nth-child(3) { border-top: 2px solid var(--t3); }
+    .stat-card:nth-child(4) { border-top: 2px solid var(--t4); }
     .stat-num {
       font-family: var(--serif);
-      font-size: 48px;
+      font-size: 52px;
       color: var(--t1);
       line-height: 1;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      font-weight: 300;
+      margin-bottom: 10px;
     }
     .stat-lbl {
       font-size: var(--lbl);
@@ -308,12 +402,12 @@
       margin: 0 auto;
     }
     .phil-item {
-      border-top: 2px solid var(--border-d);
-      padding: 40px 48px 40px 0;
+      border-top: 1px solid var(--border-d);
+      padding: 44px 48px 44px 0;
     }
     .phil-item:nth-child(1) { border-top-color: var(--accent); }
-    .phil-item:nth-child(2) { border-top-color: var(--sage); }
-    .phil-item:nth-child(3) { border-top-color: var(--clay); }
+    .phil-item:nth-child(2) { border-top-color: var(--gold); }
+    .phil-item:nth-child(3) { border-top-color: var(--t3); }
     .phil-item:not(:last-child) {
       border-right: 1px solid var(--border-s);
       margin-right: 48px;
@@ -325,11 +419,12 @@
       font-weight: 500;
       color: var(--t5);
       letter-spacing: 0.1em;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     .phil-item h3 {
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 24px;
+      font-weight: 400;
       color: var(--t1);
       margin-bottom: 16px;
       line-height: 1.2;
@@ -338,39 +433,19 @@
       font-size: 14px;
       font-weight: 300;
       color: var(--t3);
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     /* ── GALLERY ─── */
     #gallery { padding: var(--sp) 80px; }
     .gallery-head {
       max-width: 1200px;
-      margin: 0 auto 48px;
+      margin: 0 auto 56px;
     }
-    .gallery-tabs {
-      display: flex;
-      gap: 32px;
-      border-bottom: 1px solid var(--border-s);
-      margin-top: 32px;
-    }
-    .g-tab {
-      font-size: var(--lbl);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: var(--lbl-sp);
-      color: var(--t4);
-      padding-bottom: 12px;
-      border-bottom: 2px solid transparent;
-      position: relative;
-      top: 1px;
-      transition: color 0.3s, border-color 0.3s;
-    }
-    .g-tab:hover { color: var(--t2); }
-    .g-tab.active { color: var(--t1); border-bottom-color: var(--accent); }
     .gallery-grid {
       max-width: 1200px;
       margin: 0 auto;
-      columns: 3;
+      columns: 2;
       column-gap: 3px;
     }
     .g-card {
@@ -384,123 +459,117 @@
     .g-card-bg {
       display: block;
       width: 100%;
-      transition: transform 0.5s ease, filter 0.5s ease;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
     }
-    .g-card:hover .g-card-bg { transform: scale(1.03); filter: brightness(0.85); }
+    .g-card:hover .g-card-bg { transform: scale(1.04); filter: brightness(0.8); }
     .g-card-over {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: flex-end;
-      padding: 16px 20px;
+      padding: 20px 24px;
       opacity: 0;
-      transition: opacity 0.4s;
-      background: linear-gradient(to top, rgba(14,16,20,0.55) 0%, transparent 60%);
+      transition: opacity 0.5s;
+      background: linear-gradient(to top, rgba(20,18,16,0.65) 0%, transparent 50%);
     }
     .g-card:hover .g-card-over { opacity: 1; }
     .g-card-name {
-      font-size: var(--lbl);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--bg);
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--t1);
     }
 
-    /* ── EVENTS (мягкий, не влоб) ─── */
-    #events {
+    /* ── FORMATS (бывшие Events, мягче) ─── */
+    #formats {
       background: var(--surface);
       border-top: 1px solid var(--border-s);
       padding: var(--sp) 80px;
     }
-    .events-head {
+    .formats-head {
       max-width: 1200px;
       margin: 0 auto 56px;
     }
-    .events-head h2 {
+    .formats-head h2 {
       font-family: var(--serif);
-      font-size: clamp(32px, 3.5vw, 44px);
-      line-height: 1.1;
+      font-size: clamp(32px, 3.5vw, 48px);
+      line-height: 1.08;
       letter-spacing: -0.02em;
+      font-weight: 300;
       color: var(--t1);
       margin-bottom: 16px;
     }
-    .events-head p {
+    .formats-head p {
       font-size: 15px;
       font-weight: 300;
       color: var(--t3);
-      line-height: 1.8;
+      line-height: 1.9;
       max-width: 520px;
     }
-    .events-grid {
+    .formats-grid {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-    .ev-card {
+    .fmt-card {
       background: var(--bg);
-      border: 1px solid var(--border-m);
-      padding: 28px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .ev-card:hover {
-      border-color: var(--border);
-      transform: translateY(-2px);
-    }
-    .ev-tag {
-      display: inline-block;
-      font-size: 9px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      background: var(--surface);
-      color: var(--t4);
       border: 1px solid var(--border-s);
-      padding: 3px 10px;
-      margin-bottom: 16px;
+      padding: 36px 32px;
+      transition: border-color 0.4s;
     }
-    .ev-title {
+    .fmt-card:hover { border-color: var(--border-d); }
+    .fmt-num {
+      font-size: var(--lbl);
+      font-weight: 500;
+      color: var(--t5);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .fmt-title {
       font-family: var(--serif);
-      font-size: 20px;
+      font-size: 22px;
+      font-weight: 400;
       color: var(--t1);
       line-height: 1.35;
       margin-bottom: 16px;
     }
-    .ev-divider {
-      height: 1px;
-      background: var(--border-m);
-      margin-bottom: 16px;
+    .fmt-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--t3);
+      line-height: 1.8;
     }
-    .ev-price {
-      font-size: var(--lbl);
-      font-weight: 500;
-      color: var(--t4);
-      letter-spacing: 0.05em;
-    }
-    .events-bottom {
+    .formats-bottom {
       max-width: 1200px;
       margin: 56px auto 0;
       text-align: center;
     }
-    .ev-coming {
+    .fmt-note {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 300;
+      font-size: clamp(24px, 3vw, 36px);
       color: var(--t4);
       margin-bottom: 12px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
     }
-    .ev-coming-sub {
+    .fmt-note-sub {
       font-size: 13px;
       font-weight: 300;
       color: var(--t4);
       margin-bottom: 28px;
     }
     .subscribe-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       border: 1px solid var(--border);
-      padding: 12px 36px;
+      padding: 13px 32px;
       font-size: var(--lbl);
       font-weight: 500;
       text-transform: uppercase;
@@ -517,14 +586,15 @@
     /* ── CONTACT ─── */
     #contact { padding: var(--sp) 40px; }
     .contact-inner {
-      max-width: 600px;
+      max-width: 560px;
       margin: 0 auto;
       text-align: center;
     }
     #contact h2 {
       font-family: var(--serif);
-      font-size: clamp(32px, 3.5vw, 44px);
+      font-size: clamp(32px, 3.5vw, 48px);
       letter-spacing: -0.02em;
+      font-weight: 300;
       color: var(--t1);
       margin-bottom: 12px;
     }
@@ -533,10 +603,32 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: var(--lbl-sp);
-      color: var(--sage);
-      margin-bottom: 48px;
+      color: var(--accent);
+      margin-bottom: 12px;
       display: block;
     }
+    .contact-note {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--t3);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+    .contact-links {
+      margin-bottom: 48px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+    .contact-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--t2);
+      transition: color 0.3s;
+      border-bottom: 1px solid var(--border-s);
+      padding-bottom: 2px;
+    }
+    .contact-links a:hover { color: var(--accent); border-color: var(--accent); }
     .bform {
       text-align: left;
       display: flex;
@@ -545,7 +637,7 @@
     }
     .ff { display: flex; flex-direction: column; gap: 8px; }
     .ff label {
-      font-size: 10px;
+      font-size: var(--lbl);
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.15em;
@@ -562,14 +654,14 @@
       font-weight: 300;
       padding: 14px 16px;
       outline: none;
-      transition: border-color 0.3s;
+      transition: border-color 0.4s;
       appearance: none;
       -webkit-appearance: none;
       border-radius: 0;
       width: 100%;
     }
     .ff select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6270' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a6459' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 16px center;
       background-color: var(--surface);
@@ -588,29 +680,34 @@
     .ff textarea { resize: vertical; min-height: 90px; }
     .submit-btn {
       width: 100%;
-      background: var(--accent);
-      color: var(--bg);
+      background: transparent;
+      color: var(--t2);
       padding: 16px;
       font-size: var(--lbl);
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: var(--lbl-sp);
-      border: none;
+      border: 1px solid var(--border-d);
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.4s, color 0.4s, border-color 0.4s;
       margin-top: 8px;
     }
-    .submit-btn:hover { background: var(--accent-h); }
+    .submit-btn:hover {
+      background: var(--t1);
+      color: var(--bg);
+      border-color: var(--t1);
+    }
     .form-ok {
       display: none;
       text-align: center;
-      padding: 40px 32px;
+      padding: 48px 32px;
       border: 1px solid var(--border-d);
       background: var(--surface);
     }
     .form-ok p {
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 24px;
+      font-weight: 300;
       color: var(--t1);
       line-height: 1.7;
     }
@@ -618,12 +715,13 @@
     /* ── FOOTER ─── */
     #footer {
       border-top: 1px solid var(--border-s);
-      padding: 48px 40px;
+      padding: 56px 40px;
       text-align: center;
     }
     .footer-name {
       font-family: var(--serif);
-      font-size: 18px;
+      font-size: 20px;
+      font-weight: 300;
       color: var(--t1);
       margin-bottom: 8px;
     }
@@ -633,7 +731,7 @@
       color: var(--t5);
       text-transform: uppercase;
       letter-spacing: var(--lbl-sp);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .footer-socials {
       display: flex;
@@ -660,38 +758,28 @@
 
     /* ── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      :root { --sp: 72px; }
+      :root { --sp: 80px; }
       #nav { padding: 0 24px; }
-      #nav ul { gap: 20px; }
-      #nav ul li:nth-child(1),
-      #nav ul li:nth-child(2) { display: none; }
-      #hero {
-        grid-template-columns: 1fr;
-        padding: 80px 24px 60px;
-      }
-      .hero-photo img { width: 200px; }
-      .hero-dish {
-        grid-row: auto;
-        grid-column: auto;
-        order: -1;
-      }
-      .hero-dish img { max-width: 100%; }
-      #about { padding: 72px 24px; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      #hero { padding: 0 24px 60px; }
+      .hero-name span { font-size: clamp(40px, 10vw, 64px); }
+      .hero-desc { font-size: 15px; }
+      #about { padding: 80px 24px; }
       .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      #philosophy { padding: 72px 24px; }
+      #philosophy { padding: 80px 24px; }
       .philosophy-grid { grid-template-columns: 1fr; }
       .phil-item { padding: 32px 0 !important; margin-right: 0 !important; border-right: none !important; }
-      #gallery { padding: 72px 24px; }
-      .gallery-grid { columns: 2; }
-      #events { padding: 72px 24px; }
-      .events-grid { grid-template-columns: 1fr 1fr; }
-      #contact { padding: 72px 24px; }
+      #gallery { padding: 80px 24px; }
+      .gallery-grid { columns: 1; }
+      #formats { padding: 80px 24px; }
+      .formats-grid { grid-template-columns: 1fr; }
+      #contact { padding: 80px 24px; }
     }
     @media (max-width: 480px) {
-      #nav ul li:nth-child(3) { display: none; }
-      .gallery-grid { columns: 1; }
-      .events-grid { grid-template-columns: 1fr; }
-      #about, #philosophy, #gallery, #events, #contact { padding: 56px 20px; }
+      .hero-desc { max-width: 100%; }
+      #about, #philosophy, #gallery, #formats, #contact { padding: 64px 20px; }
+      .contact-links { flex-direction: column; gap: 16px; }
     }
   </style>
 </head>
@@ -699,40 +787,79 @@
 
   <nav id="nav">
     <a href="#hero" class="nav-logo">Никита Митрофанов</a>
-    <ul>
-      <li><a href="#about">О шефе</a></li>
-      <li><a href="#gallery">Блюда</a></li>
-      <li><a href="#events">Вечера</a></li>
-      <li><a href="#contact">Связаться</a></li>
-    </ul>
+    <div class="nav-links">
+      <a href="#about">О шефе</a>
+      <a href="#gallery">Блюда</a>
+      <a href="#formats">Форматы</a>
+      <a href="#contact">Написать</a>
+    </div>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">О шефе</a>
+    <a href="#gallery">Блюда</a>
+    <a href="#formats">Форматы</a>
+    <a href="#contact">Написать</a>
+  </div>
 
   <!-- ── HERO ── -->
   <section id="hero">
+    <div class="hero-video">
+      <video autoplay muted loop playsinline>
+        <source src="hero-video.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-content">
-      <div class="hero-name fu d1">
+      <div class="hero-name reveal">
         <span class="ln1">Никита</span>
         <span class="ln2">Митрофанов</span>
       </div>
-      <span class="hero-subtitle fu d2">Сезонный продукт · Сложные техники · Понятный результат</span>
-      <p class="hero-desc fu d3">Пятнадцать лет на профессиональной кухне. Ферментация, многоступенчатые процессы и работа с сезонным продуктом — в блюдах, которые считываются сразу.</p>
+      <p class="hero-desc reveal d1">Пятнадцать лет на профессиональной кухне. Ферментация, сезонный продукт и сложные техники — в блюдах, которые считываются сразу.</p>
+      <a href="#contact" class="hero-cta reveal d2">
+        Познакомиться
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
     </div>
   </section>
 
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Сезонный продукт</span>
+      <span>Ферментация</span>
+      <span>Авторская кухня</span>
+      <span>Мастер-классы</span>
+      <span>Гастрономические ужины</span>
+      <span>Консультации</span>
+      <span>Сложные техники</span>
+      <span>Понятный результат</span>
+      <span>Сезонный продукт</span>
+      <span>Ферментация</span>
+      <span>Авторская кухня</span>
+      <span>Мастер-классы</span>
+      <span>Гастрономические ужины</span>
+      <span>Консультации</span>
+      <span>Сложные техники</span>
+      <span>Понятный результат</span>
+    </div>
+  </div>
+
   <!-- ── ABOUT ── -->
   <section id="about">
     <div class="about-inner">
       <div class="about-text">
-        <span class="section-label fu">О шефе</span>
-        <h2 class="fu d1">Кухня, где процесс<br>важнее эффекта</h2>
-        <p class="fu d2">Никита Митрофанов — шеф-повар с пятнадцатилетним опытом на профессиональной кухне. Работает с сезонным продуктом, соединяет ингредиенты через ферментацию, сложные техники и многоступенчатые процессы — но с результатом, который понятен и считывается сразу.</p>
-        <p class="fu d3">За последние пять лет — более пятидесяти закрытых гастрономических вечеров и двух тысяч мастер-классов. Каждый проект — отдельная история: от камерного ужина на двенадцать человек до корпоративного формата.</p>
-        <p class="fu d4">Сегодня Никита доступен для частных ужинов, мастер-классов, консультаций и сотрудничества с ресторанными проектами.</p>
+        <span class="section-label reveal">О шефе</span>
+        <h2 class="reveal d1">Кухня, где процесс<br>важнее <em>эффекта</em></h2>
+        <p class="reveal d2">Никита Митрофанов — шеф-повар с пятнадцатилетним опытом на профессиональной кухне. Работает с сезонным продуктом, соединяет ингредиенты через ферментацию, сложные техники и многоступенчатые процессы — но с результатом, который понятен и считывается сразу.</p>
+        <p class="reveal d3">За последние пять лет — более пятидесяти закрытых гастрономических вечеров и двух тысяч мастер-классов. Каждый проект — отдельная история: от камерного ужина на двенадцать человек до корпоративного формата.</p>
       </div>
-      <div class="stats-grid fu d2">
+      <div class="stats-grid reveal d2">
         <div class="stat-card">
           <div class="stat-num">15+</div>
           <div class="stat-lbl">лет на кухне</div>
@@ -756,17 +883,17 @@
   <!-- ── PHILOSOPHY ── -->
   <section id="philosophy">
     <div class="philosophy-grid">
-      <div class="phil-item fu">
+      <div class="phil-item reveal">
         <span class="phil-num">01</span>
         <h3>Продукт как герой</h3>
         <p>Техника — это слуга, не хозяин. Задача шефа — не усложнить, а обнажить. Найти в продукте то, что он хотел сказать с самого начала, и не мешать ему это сделать.</p>
       </div>
-      <div class="phil-item fu d1">
+      <div class="phil-item reveal d1">
         <span class="phil-num">02</span>
         <h3>Ферментация и время</h3>
         <p>Лучшие вкусы рождаются не на сковороде, а в ожидании. Мисо, кимчи, уксусы — каждый процесс требует терпения. Время — такой же ингредиент, как соль.</p>
       </div>
-      <div class="phil-item fu d2">
+      <div class="phil-item reveal d2">
         <span class="phil-num">03</span>
         <h3>Контраст как язык</h3>
         <p>Холодное рядом с горячим. Хрустящее в мягком. Горечь в сладком. Когда два противоположных элемента встречаются правильно, возникает третье измерение.</p>
@@ -777,83 +904,70 @@
   <!-- ── GALLERY ── -->
   <section id="gallery">
     <div class="gallery-head">
-      <span class="section-label fu">Блюда</span>
+      <span class="section-label reveal">Блюда</span>
     </div>
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
-  <!-- ── EVENTS (мягко) ── -->
-  <section id="events">
-    <div class="events-head">
-      <span class="section-label fu">Вечера</span>
-      <h2 class="fu d1">Избранные ужины</h2>
-      <p class="fu d2">Время от времени Никита проводит закрытые гастрономические вечера. Каждый — отдельная тема и новое меню.</p>
+  <!-- ── FORMATS ── -->
+  <section id="formats">
+    <div class="formats-head">
+      <span class="section-label reveal">Форматы</span>
+      <h2 class="reveal d1">С чем можно прийти</h2>
+      <p class="reveal d2">Каждый проект начинается с разговора. Расскажите, что вам важно — дальше разберёмся вместе.</p>
     </div>
 
-    <div class="events-grid">
-      <div class="ev-card fu">
-        <div class="ev-tag">Гастроужин</div>
-        <div class="ev-title">Французский гастроужин</div>
-        <div class="ev-divider"></div>
-        <div class="ev-price">7 000 ₽/чел</div>
+    <div class="formats-grid">
+      <div class="fmt-card reveal">
+        <span class="fmt-num">01</span>
+        <div class="fmt-title">Закрытый ужин</div>
+        <div class="fmt-desc">Камерный гастрономический вечер на 8–16 человек. Авторское меню из 5–8 подач, подобранное под сезон и повод.</div>
       </div>
-      <div class="ev-card fu d1">
-        <div class="ev-tag">Гастроужин</div>
-        <div class="ev-title">Буррата с томатами, Испанские тапас, Свиная шея с демигласом, Сорбет и эклеры</div>
-        <div class="ev-divider"></div>
-        <div class="ev-price">7 000 ₽/чел</div>
+      <div class="fmt-card reveal d1">
+        <span class="fmt-num">02</span>
+        <div class="fmt-title">Мастер-класс</div>
+        <div class="fmt-desc">Практическое занятие для любого уровня — от домашних поваров до профессионалов. Техники, продукты, разбор ошибок.</div>
       </div>
-      <div class="ev-card fu d2">
-        <div class="ev-tag">Гастроужин</div>
-        <div class="ev-title">Тар-тар из тунца, Фуа-гра с малиной, Равиоли, Гречневая лапша, Десерт шу</div>
-        <div class="ev-divider"></div>
-        <div class="ev-price">7 000 ₽/чел</div>
-      </div>
-      <div class="ev-card fu">
-        <div class="ev-tag">Гастроужин</div>
-        <div class="ev-title">Скумбрия су-вид, Гель из лука, Ризотто с белыми грибами, Мильфей с малиной</div>
-        <div class="ev-divider"></div>
-        <div class="ev-price">7 000 ₽/чел</div>
-      </div>
-      <div class="ev-card fu d1">
-        <div class="ev-tag">Гастроужин</div>
-        <div class="ev-title">Гребешок, Карпаччо, Стейк миньон с гратеном, Сорбет и тыква</div>
-        <div class="ev-divider"></div>
-        <div class="ev-price">7 000 ₽/чел</div>
-      </div>
-      <div class="ev-card fu d2">
-        <div class="ev-tag">Новый год</div>
-        <div class="ev-title">Новогодний гастроужин — сет из 8 блюд</div>
-        <div class="ev-divider"></div>
-        <div class="ev-price">7 500 ₽/чел</div>
+      <div class="fmt-card reveal d2">
+        <span class="fmt-num">03</span>
+        <div class="fmt-title">Консультация</div>
+        <div class="fmt-desc">Разработка меню, настройка кухонных процессов, запуск ресторанного проекта. Точечно или на сопровождении.</div>
       </div>
     </div>
 
-    <div class="events-bottom fu">
-      <p class="ev-coming">Следующий вечер — скоро</p>
-      <p class="ev-coming-sub">Анонсы в Telegram</p>
-      <a href="https://t.me/havaite" target="_blank" class="subscribe-btn">Подписаться на анонсы</a>
+    <div class="formats-bottom reveal">
+      <p class="fmt-note">Анонсы ближайших вечеров — в Telegram</p>
+      <p class="fmt-note-sub">Там же — процессы, продукты и кухонные истории</p>
+      <a href="https://t.me/havaite" target="_blank" class="subscribe-btn">
+        Telegram-канал
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
     </div>
   </section>
 
   <!-- ── CONTACT ── -->
   <section id="contact">
     <div class="contact-inner">
-      <h2 class="fu">Связаться с Никитой</h2>
-      <span class="contact-sub fu d1">Ужины · Мастер-классы · Сотрудничество</span>
-      <p class="fu d1" style="margin-bottom:32px;font-size:15px;color:var(--t3)"><a href="tel:+79643772229" style="color:var(--t2)">+7 964 377-22-29</a> · <a href="https://t.me/havaite" target="_blank" style="color:var(--accent)">Telegram</a></p>
+      <h2 class="reveal">Написать Никите</h2>
+      <span class="contact-sub reveal d1">Начинается с разговора</span>
+      <p class="contact-note reveal d1">Расскажите, что вам интересно — отвечу в течение дня. Или напишите напрямую в Telegram.</p>
 
-      <form class="bform fu d2" id="bForm" novalidate>
+      <div class="contact-links reveal d2">
+        <a href="https://t.me/havaite" target="_blank">Telegram</a>
+        <a href="tel:+79643772229">+7 964 377-22-29</a>
+      </div>
+
+      <form class="bform reveal d3" id="bForm" novalidate>
         <div class="ff" id="ff-name">
           <label for="f-name">Имя</label>
-          <input type="text" id="f-name" name="name" placeholder="Ваше имя">
+          <input type="text" id="f-name" name="name" placeholder="Как к вам обращаться">
         </div>
         <div class="ff" id="ff-phone">
-          <label for="f-phone">Телефон</label>
-          <input type="tel" id="f-phone" name="phone" placeholder="+7 (___) ___-__-__">
+          <label for="f-phone">Телефон или Telegram</label>
+          <input type="text" id="f-phone" name="phone" placeholder="+7 или @username">
         </div>
         <div class="ff">
-          <label for="f-topic">Тема</label>
+          <label for="f-topic">Интересует</label>
           <select id="f-topic" name="topic">
             <option value="" disabled selected>Выберите тему</option>
             <option value="dinner">Закрытый ужин</option>
@@ -871,7 +985,7 @@
       </form>
 
       <div class="form-ok" id="formOk">
-        <p>Спасибо! Свяжусь с вами<br>в течение 24 часов.</p>
+        <p>Спасибо! Свяжусь с вами<br>в течение дня.</p>
       </div>
     </div>
   </section>
@@ -881,99 +995,134 @@
     <div class="footer-tagline">Шеф-повар · Москва</div>
     <div class="footer-socials">
       <a href="https://t.me/havaite" target="_blank" rel="noopener">Telegram</a>
-      <a href="tel:+79643772229">+7 964 377-22-29</a>
+      <a href="tel:+79643772229">Телефон</a>
     </div>
-    <div class="footer-copy">© 2025 Никита Митрофанов</div>
+    <div class="footer-copy">© 2026 Никита Митрофанов</div>
   </footer>
 
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
   <script>
+    /* ── LENIS SMOOTH SCROLL ── */
+    const lenis = new Lenis({
+      duration: 1.3,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    /* ── BURGER MENU ── */
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
     /* ── GALLERY ── */
     const dishes = [
-      { name: 'Шоколадная слоёная бриошь с мороженым из бородинского хлеба', cat: 'dessert', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-51.jpg' },
-      { name: 'Тар-тар из говядины на меренге из фо бо', cat: 'starter', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-55.jpg' },
-      { name: 'Рулет из судака',        cat: 'main',    ratio: '16/10', img: 'фото блюд для сайта/рулет судак.jpg' },
-    ];
-    const grads = [
-      '150deg,#181b20,#20242a','200deg,#161920,#1e2228',
-      '120deg,#1a1d22,#222630','170deg,#171a20,#1f2328',
-      '130deg,#191c22,#21252c','190deg,#161a20,#1e2228',
-      '140deg,#181b22,#20242c','160deg,#171a20,#1f2328',
-      '110deg,#1a1d24,#22262e','180deg,#161920,#1e222a',
-      '125deg,#191c22,#21252e','155deg,#181b20,#20242c',
+      { name: 'Шоколадная слоёная бриошь с мороженым из бородинского хлеба', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-51.jpg' },
+      { name: 'Тар-тар из говядины на меренге из фо бо', ratio: '3/4',  img: 'фото блюд для сайта/photo_2026-04-05_17-10-55.jpg' },
+      { name: 'Рулет из судака', ratio: '16/10', img: 'фото блюд для сайта/рулет судак.jpg' },
+      { name: 'Ростбиф с сезонными овощами', ratio: '3/4', img: 'фото блюд для сайта/beef-roll.jpg' },
     ];
     const grid = document.getElementById('galleryGrid');
     dishes.forEach((d, i) => {
       const card = document.createElement('div');
-      card.className = 'g-card fu';
-      card.dataset.cat = d.cat;
-      card.style.transitionDelay = (i % 4 * 0.08) + 's';
-      const bg = d.img
-        ? `<img class="g-card-bg" src="${d.img}" alt="${d.name}" style="aspect-ratio:${d.ratio};object-fit:cover;width:100%">`
-        : `<div class="g-card-bg" style="aspect-ratio:${d.ratio};background:linear-gradient(${grads[i]})"></div>`;
-      card.innerHTML = `${bg}<div class="g-card-over"><span class="g-card-name">${d.name}</span></div>`;
+      card.className = 'g-card reveal';
+      card.style.transitionDelay = (i % 2 * 0.12) + 's';
+      card.innerHTML = `<img class="g-card-bg" src="${d.img}" alt="${d.name}" style="aspect-ratio:${d.ratio};object-fit:cover;width:100%" loading="lazy"><div class="g-card-over"><span class="g-card-name">${d.name}</span></div>`;
       grid.appendChild(card);
     });
 
-    document.querySelectorAll('.g-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.g-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const f = tab.dataset.filter;
-        document.querySelectorAll('.g-card').forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
-      });
-    });
-
-    /* ── INTERSECTION OBSERVER ── */
+    /* ── SCROLL REVEAL (IntersectionObserver) ── */
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduced) {
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.fu').forEach(el => io.observe(el));
+      }, { threshold: 0.06, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     } else {
-      document.querySelectorAll('.fu').forEach(el => el.classList.add('in'));
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
     /* ── NAV ACTIVE ── */
     const sio = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting)
-          document.querySelectorAll('#nav ul a').forEach(a =>
+          document.querySelectorAll('.nav-links a').forEach(a =>
             a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
       });
     }, { threshold: 0.3 });
-    ['about','gallery','events','contact'].forEach(id => {
+    ['about','gallery','formats','contact'].forEach(id => {
       const el = document.getElementById(id);
       if (el) sio.observe(el);
     });
 
-    /* ── FORM ── */
+    /* ── FORM → TELEGRAM ── */
+    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN';
+    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';
+
     const form = document.getElementById('bForm');
     const ok = document.getElementById('formOk');
-    form.addEventListener('submit', e => {
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       let valid = true;
       const nf = document.getElementById('ff-name');
       const pf = document.getElementById('ff-phone');
       nf.classList.remove('err'); pf.classList.remove('err');
-      if (!document.getElementById('f-name').value.trim()) { nf.classList.add('err'); valid = false; }
-      if (!document.getElementById('f-phone').value.trim()) { pf.classList.add('err'); valid = false; }
+
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const topic = document.getElementById('f-topic').value || 'Не выбрана';
+      const comment = document.getElementById('f-comment').value.trim();
+
+      if (!name) { nf.classList.add('err'); valid = false; }
+      if (!phone) { pf.classList.add('err'); valid = false; }
       if (!valid) {
         form.classList.add('shake');
         form.addEventListener('animationend', () => form.classList.remove('shake'), { once: true });
         return;
       }
+
+      const topicLabels = { dinner: 'Закрытый ужин', masterclass: 'Мастер-класс', consult: 'Консультация', collab: 'Сотрудничество', other: 'Другое' };
+      const text = `🍽 Новая заявка с сайта\n\nИмя: ${name}\nКонтакт: ${phone}\nТема: ${topicLabels[topic] || topic}\n${comment ? 'Сообщение: ' + comment : ''}`;
+
+      try {
+        if (TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN') {
+          await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text, parse_mode: 'HTML' })
+          });
+        }
+      } catch (err) {
+        // Если Telegram недоступен, всё равно показываем OK
+      }
+
       form.style.display = 'none';
       ok.style.display = 'block';
     });
+
     form.querySelectorAll('input, select, textarea').forEach(el =>
       el.addEventListener('input', () => el.closest('.ff')?.classList.remove('err')));
 
-    /* ── SMOOTH SCROLL ── */
+    /* ── SMOOTH SCROLL LINKS ── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const t = document.querySelector(a.getAttribute('href'));
-        if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 60, behavior: 'smooth' }); }
+        if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -60 }); }
       });
     });
   </script>
