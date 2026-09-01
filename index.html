@@ -1218,8 +1218,7 @@
     });
 
     /* ── FORM → TELEGRAM ── */
-    const TELEGRAM_BOT_TOKEN = '8767848451:AAE5BxBeh9DLgih_wW6SRwf2Nufuybr6sXs';
-    const TELEGRAM_CHAT_ID = '633782471';
+    const TELEGRAM_CONTACT = 'havaite';
 
     const form = document.getElementById('bForm');
     const ok = document.getElementById('formOk');
@@ -1236,8 +1235,8 @@
       const topic = document.getElementById('f-topic').value || 'Не выбрана';
       const comment = document.getElementById('f-comment').value.trim();
 
-      if (!name) { nf.classList.add('err'); valid = false; }
-      if (!phone) { pf.classList.add('err'); valid = false; }
+      if (name.length < 2 || name.length > 80) { nf.classList.add('err'); valid = false; }
+      if (phone.length < 5 || phone.length > 100) { pf.classList.add('err'); valid = false; }
       if (!valid) {
         form.classList.add('shake');
         form.addEventListener('animationend', () => form.classList.remove('shake'), { once: true });
@@ -1247,17 +1246,9 @@
       const topicLabels = { dinner: 'Закрытый ужин', masterclass: 'Мастер-класс', consult: 'Консультация', collab: 'Сотрудничество', other: 'Другое' };
       const text = `🍽 Новая заявка с сайта\n\nИмя: ${name}\nКонтакт: ${phone}\nТема: ${topicLabels[topic] || topic}\n${comment ? 'Сообщение: ' + comment : ''}`;
 
-      try {
-        if (TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN') {
-          await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text, parse_mode: 'HTML' })
-          });
-        }
-      } catch (err) {
-        // Если Telegram недоступен, всё равно показываем OK
-      }
+      const telegramUrl = `https://t.me/${TELEGRAM_CONTACT}?text=${encodeURIComponent(text)}`;
+      const telegramWindow = window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+      if (!telegramWindow) window.location.href = telegramUrl;
 
       form.style.display = 'none';
       ok.style.display = 'block';
