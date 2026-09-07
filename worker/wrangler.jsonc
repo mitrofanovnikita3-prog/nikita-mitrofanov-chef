@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nikita-chef-contact",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-07",
+  "secrets": {
+    "required": ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"]
+  },
+  "vars": {
+    "ALLOWED_ORIGIN": "https://mitrofanovchef.ru"
+  }
+}
+
