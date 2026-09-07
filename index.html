@@ -799,6 +799,15 @@
       color: var(--bg);
       border-color: var(--t1);
     }
+    .submit-btn:disabled { opacity: 0.55; cursor: wait; }
+    .form-error {
+      display: none;
+      margin: 0;
+      color: var(--error);
+      font-size: 13px;
+      text-align: center;
+    }
+    .form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
     .form-ok {
       display: none;
       text-align: center;
@@ -1093,6 +1102,10 @@
       </div>
 
       <form class="bform reveal d3" id="bForm" novalidate>
+        <div class="form-trap" aria-hidden="true">
+          <label for="f-website">Сайт</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="ff" id="ff-name">
           <label for="f-name">Имя</label>
           <input type="text" id="f-name" name="name" placeholder="Как к вам обращаться">
@@ -1116,6 +1129,7 @@
           <label for="f-comment">Сообщение</label>
           <textarea id="f-comment" name="comment" rows="3" placeholder="Расскажите, чем могу быть полезен…"></textarea>
         </div>
+        <p class="form-error" id="formError" role="alert"></p>
         <button type="submit" class="submit-btn">Отправить</button>
       </form>
 
@@ -1218,14 +1232,18 @@
     });
 
     /* ── FORM → TELEGRAM ── */
-    const TELEGRAM_CONTACT = 'havaite';
+    const FORM_ENDPOINT = 'https://nikita-chef-contact.mitrofanovnikita3.workers.dev';
 
     const form = document.getElementById('bForm');
     const ok = document.getElementById('formOk');
+    const formError = document.getElementById('formError');
+    const submitButton = form.querySelector('.submit-btn');
+    const formStartedAt = Date.now();
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       let valid = true;
+      formError.style.display = 'none';
       const nf = document.getElementById('ff-name');
       const pf = document.getElementById('ff-phone');
       nf.classList.remove('err'); pf.classList.remove('err');
@@ -1244,14 +1262,33 @@
       }
 
       const topicLabels = { dinner: 'Закрытый ужин', masterclass: 'Мастер-класс', consult: 'Консультация', collab: 'Сотрудничество', other: 'Другое' };
-      const text = `🍽 Новая заявка с сайта\n\nИмя: ${name}\nКонтакт: ${phone}\nТема: ${topicLabels[topic] || topic}\n${comment ? 'Сообщение: ' + comment : ''}`;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Отправляем…';
 
-      const telegramUrl = `https://t.me/${TELEGRAM_CONTACT}?text=${encodeURIComponent(text)}`;
-      const telegramWindow = window.open(telegramUrl, '_blank', 'noopener,noreferrer');
-      if (!telegramWindow) window.location.href = telegramUrl;
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            phone,
+            topic,
+            comment,
+            website: document.getElementById('f-website').value,
+            startedAt: formStartedAt,
+          }),
+        });
 
-      form.style.display = 'none';
-      ok.style.display = 'block';
+        if (!response.ok) throw new Error('Request failed');
+        form.style.display = 'none';
+        ok.style.display = 'block';
+      } catch {
+        formError.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
+        formError.style.display = 'block';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Отправить';
+      }
     });
 
     form.querySelectorAll('input, select, textarea').forEach(el =>
@@ -1267,3 +1304,4 @@
   </script>
 </body>
 </html>
+
