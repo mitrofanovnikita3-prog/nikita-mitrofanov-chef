@@ -1,0 +1,8 @@
+worker/node_modules/
+worker/.wrangler/
+worker/.wrangler-dry-run/
+worker/.dev.vars
+.env
+.env.*
+!.env.example
+
