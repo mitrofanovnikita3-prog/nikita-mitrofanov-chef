@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Никита Митрофанов — шеф-повар, авторская кухня, гастрономические ужины и мастер-классы в Москве.">
+  <meta name="description" content="Никита Митрофанов — шеф-повар для ресторанных и медийных проектов. Санкт-Петербург, Москва и выездные проекты.">
   <meta property="og:title" content="Никита Митрофанов — Шеф-повар">
   <meta property="og:description" content="Сезонный продукт, ферментация, сложные техники — понятный результат.">
   <meta property="og:image" content="никита.jpg">
-  <title>Никита Митрофанов — Шеф-повар</title>
+  <link rel="icon" href="никита.jpg" type="image/jpeg">
+  <title>Никита Митрофанов — шеф-повар, рестораны и медиа</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -901,11 +902,73 @@
     .ff input:focus, .ff select:focus, .ff textarea:focus { border-color: var(--accent); }
     footer { background: #261811; color: #f3f2e9; }
     footer a { color: #dbc8b8; }
+    .hero-role {
+      display: block; margin-bottom: 10px; color: var(--accent);
+      font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .hero-statement {
+      max-width: 720px; margin: 0 0 18px; color: var(--t1);
+      font: 700 clamp(30px, 4vw, 58px)/1.1 var(--serif); letter-spacing: -.04em;
+    }
+    .hero-desc strong { color: var(--t1); font-weight: 600; }
+    #about .about-inner { display: block; max-width: 920px; }
+    #about .about-text h2 { max-width: 800px; }
+    #about .about-text p { max-width: 820px; }
+    .direction-section, .private-section {
+      max-width: none; padding: var(--sp) max(80px, calc((100vw - 1200px)/2));
+    }
+    #media { background: var(--surface); border-block: 1px solid var(--border-s); }
+    #restaurants { background: var(--bg); }
+    .direction-copy { max-width: 900px; }
+    .direction-copy h2, .private-section h2 {
+      margin-bottom: 28px; color: var(--t1);
+      font: 700 clamp(34px, 4.5vw, 62px)/1.08 var(--serif); letter-spacing: -.045em;
+    }
+    .direction-copy p, .private-section p {
+      max-width: 720px; margin: 0 0 16px; color: var(--t2); font-size: 17px; line-height: 1.85;
+    }
+    .proof-line { color: var(--accent) !important; font-weight: 500; }
+    .section-cta {
+      display: inline-flex; margin-top: 24px; padding: 14px 24px;
+      border: 1px solid var(--border-d); border-radius: 16px;
+      color: var(--t1); font-size: 11px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; transition: .3s ease;
+    }
+    .section-cta:hover { background: var(--t1); color: var(--bg); transform: translateY(-2px); }
+    .media-strip {
+      display: grid; grid-template-columns: 1.1fr .9fr 1fr; gap: 10px;
+      max-width: 1200px; margin-top: 54px;
+    }
+    .media-strip img { width: 100%; height: 360px; object-fit: cover; border-radius: 24px; }
+    .media-strip img:nth-child(2) { margin-top: 34px; }
+    .competencies {
+      max-width: 900px; margin: 34px 0; padding: 24px 0;
+      border-block: 1px solid var(--border-m); color: var(--accent);
+      font: 600 14px/2 var(--serif); letter-spacing: .015em;
+    }
+    .private-section { background: var(--surface); border-block: 1px solid var(--border-s); }
+    .private-section h2 { max-width: 850px; }
+    .contact-geo { margin-top: 38px; color: var(--t3); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    @media (max-width: 980px) {
+      #nav { padding-inline: 28px; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+    }
     @media (max-width: 700px) {
       .hero-video::after {
         background: linear-gradient(0deg, var(--bg) 0%, rgba(243,242,233,.32) 50%, rgba(243,242,233,.46) 100%);
       }
       .stat-card, .phil-item, .fmt-card, .past-card, .contact-inner, .bform { border-radius: 22px; }
+      .hero-name span { font-size: clamp(36px, 11vw, 58px); line-height: 1.03; }
+      .hero-statement { font-size: clamp(28px, 8vw, 42px); }
+      .direction-section, .private-section { padding: 82px 20px; }
+      .direction-copy h2, .private-section h2 { font-size: clamp(31px, 9vw, 44px); }
+      .direction-copy p, .private-section p { font-size: 16px; }
+      .media-strip { grid-template-columns: 1fr 1fr; margin-top: 38px; }
+      .media-strip img { height: 250px; border-radius: 18px; }
+      .media-strip img:nth-child(2) { margin-top: 24px; }
+      .media-strip img:nth-child(3) { display: none; }
+      .section-cta { width: 100%; justify-content: center; padding-inline: 15px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&amp;family=Onest:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -916,8 +979,10 @@
     <a href="#hero" class="nav-logo">Никита Митрофанов</a>
     <div class="nav-links">
       <a href="#about">О шефе</a>
+      <a href="#media">Медиа</a>
+      <a href="#restaurants">Рестораны</a>
       <a href="#gallery">Блюда</a>
-      <a href="#formats">Форматы</a>       <a href="bloggers.html">Блогеры и медиа</a>
+      <a href="bloggers.html">Блогеры и медиа</a>
       <a href="#contact">Написать</a>
     </div>
     <div class="burger" id="burger">
@@ -927,8 +992,10 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about">О шефе</a>
+    <a href="#media">Медиа</a>
+    <a href="#restaurants">Рестораны</a>
     <a href="#gallery">Блюда</a>
-    <a href="#formats">Форматы</a>       <a href="bloggers.html">Блогеры и медиа</a>
+    <a href="bloggers.html">Блогеры и медиа</a>
     <a href="#contact">Написать</a>
   </div>
 
@@ -940,13 +1007,14 @@
       </video>
     </div>
     <div class="hero-content">
-      <div class="hero-name reveal">
-        <span class="ln1">Никита</span>
-        <span class="ln2">Митрофанов</span>
-      </div>
-      <p class="hero-desc reveal d1">Пятнадцать лет на кухне — от открытого гриля до собственных заквасок. Готовлю то, что требует времени: долгая ферментация, ремесленный хлеб, блюда, в которых сложное прячется за простым.</p>
+      <h1 class="hero-name reveal">
+        <span class="ln1">Никита Митрофанов</span>
+      </h1>
+      <span class="hero-role reveal d1">Шеф-повар</span>
+      <div class="hero-statement reveal d1">Еда. Рестораны. Медиа.</div>
+      <p class="hero-desc reveal d2"><strong>15 лет на кухне</strong><br>Санкт-Петербург · Москва · выездные проекты</p>
       <a href="#contact" class="hero-cta reveal d2">
-        Написать Никите
+        Обсудить проект
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
     </div>
@@ -958,22 +1026,8 @@
   <!-- ── MARQUEE ── -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span>Сезонный продукт</span>
-      <span>Ферментация</span>
-      <span>Авторская кухня</span>
-      <span>Мастер-классы</span>
-      <span>Гастрономические ужины</span>
-      <span>Консультации</span>
-      <span>Сложные техники</span>
-      <span>Понятный результат</span>
-      <span>Сезонный продукт</span>
-      <span>Ферментация</span>
-      <span>Авторская кухня</span>
-      <span>Мастер-классы</span>
-      <span>Гастрономические ужины</span>
-      <span>Консультации</span>
-      <span>Сложные техники</span>
-      <span>Понятный результат</span>
+      <span>Медиа</span><span>Ресторанные проекты</span><span>Гастрономия</span><span>Съёмки</span><span>Запуск кухонь</span><span>Частные проекты</span>
+      <span>Медиа</span><span>Ресторанные проекты</span><span>Гастрономия</span><span>Съёмки</span><span>Запуск кухонь</span><span>Частные проекты</span>
     </div>
   </div>
 
@@ -981,51 +1035,43 @@
   <section id="about">
     <div class="about-inner">
       <div class="about-text">
-        <span class="section-label reveal">О шефе</span>
-        <h2 class="reveal d1">Кухня, где процесс<br>важнее <em>эффекта</em></h2>
-        <p class="reveal d2">Никита Митрофанов — шеф-повар с пятнадцатилетним опытом в индустрии. Прошёл путь от горячего цеха до руководства кухней и запуска ресторанных проектов с нуля — от первой идеи на салфетке до первого гостя за столом. Более 2 000 мероприятий — от камерных ужинов на двенадцать человек до фестивалей на тысячу.</p>
-        <p class="reveal d3">Сейчас в фокусе — сложная ферментация: гарумы, закваски, выдержанные соусы. Всё, что требует терпения и времени — а время здесь такой же ингредиент, как соль. Параллельно — крафтовый ресторанный хлеб на длительной расстойке, который стал отдельным направлением в работе.</p>
-        <p class="reveal d4">Работает с цифрами так же внимательно, как с продуктом — за каждым красивым блюдом стоит отлаженный процесс.</p>
-      </div>
-      <div class="stats-grid reveal d2">
-        <div class="stat-card">
-          <div class="stat-num">15+</div>
-          <div class="stat-lbl">лет на кухне</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">2 000+</div>
-          <div class="stat-lbl">мероприятий</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">3 000+</div>
-          <div class="stat-lbl">гостей</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">200+</div>
-          <div class="stat-lbl">авторских блюд</div>
-        </div>
+        <span class="section-label reveal">Позиционирование</span>
+        <h2 class="reveal d1">Шеф — это не только про еду.</h2>
+        <p class="reveal d2"><strong>15 лет на кухне.</strong></p>
+        <p class="reveal d2">За это время я работал с ресторанами разных форматов, запускал проекты с нуля, занимался экономикой и организацией кухни, работал в кулинарных студиях.</p>
+        <p class="reveal d3">Проводил мастер-классы и гастрономические ужины, участвовал в съёмках, работал с блогерами, брендами и телевизионными проектами.</p>
+        <p class="reveal d4">Сегодня мой опыт находится на пересечении трёх направлений — <strong>ресторанного бизнеса, гастрономии и медиа.</strong></p>
       </div>
     </div>
   </section>
 
-  <!-- ── PHILOSOPHY ── -->
-  <section id="philosophy">
-    <div class="philosophy-grid">
-      <div class="phil-item reveal">
-        <span class="phil-num">01</span>
-        <h3>Продукт как герой</h3>
-        <p>Задача шефа — не усложнить, а обнажить. Сезонная тыква с фермы, дикий гриб после первых заморозков — найти в продукте то, что он хотел сказать, и не мешать.</p>
-      </div>
-      <div class="phil-item reveal d1">
-        <span class="phil-num">02</span>
-        <h3>Ферментация и время</h3>
-        <p>Мисо, которому полгода. Хлеб на 48-часовой закваске. Соус из ферментированной сливы трёхмесячной выдержки. Лучшие вкусы рождаются не на сковороде, а в ожидании.</p>
-      </div>
-      <div class="phil-item reveal d2">
-        <span class="phil-num">03</span>
-        <h3>Контраст как язык</h3>
-        <p>Холодное рядом с горячим. Хрустящее в бархатистом. Горечь в тягучей сладости. Когда два противоположных элемента встречаются правильно — возникает третье измерение.</p>
-      </div>
+  <!-- ── MEDIA ── -->
+  <section id="media" class="direction-section">
+    <div class="direction-copy">
+      <span class="section-label reveal">Media</span>
+      <h2 class="reveal d1">С камерой — на ты.</h2>
+      <p class="reveal d2">Снимаюсь, готовлю, импровизирую и умею говорить о еде без скучной лекции.</p>
+      <p class="reveal d2">Работал с блогерами, телевидением, YouTube-проектами и брендами. Участвовал в рекламных съёмках и разработке гастрономического контента.</p>
+      <p class="proof-line reveal d3">Анатолий Борщ · Михеев и Павлов · Грильков</p>
+      <a class="section-cta reveal d3" href="bloggers.html">Смотреть медийные проекты →</a>
+    </div>
+    <div class="media-strip reveal d2">
+      <img src="gallery-1.jpg" alt="Никита Митрофанов на съёмке" loading="lazy">
+      <img src="gallery-3.jpg" alt="Медийный проект с участием Никиты" loading="lazy">
+      <img src="gallery-5.jpg" alt="Работа в кадре" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ── RESTAURANTS ── -->
+  <section id="restaurants" class="direction-section restaurants-section">
+    <div class="direction-copy">
+      <span class="section-label reveal">Restaurants</span>
+      <h2 class="reveal d1">Кухня должна не только вкусно готовить.<br>Она должна работать.</h2>
+      <p class="reveal d2">Запускаю кухни с нуля и подключаюсь к действующим ресторанным проектам.</p>
+      <p class="reveal d2">Работаю не только с меню и продуктом, но и с экономикой кухни, командой и внутренними процессами.</p>
+      <div class="competencies reveal d3">Концепция кухни · Меню · Food cost · ФОТ · P&amp;L · Бюджетирование · Закупки · Оборудование · Команда · Инвентаризация · Запуск · Сопровождение</div>
+      <p class="reveal d3">Работал с разными форматами — от ресторанов и гастропабов до баров и кондитерских.</p>
+      <a class="section-cta reveal d3" href="#contact">Обсудить ресторанный проект →</a>
     </div>
   </section>
 
@@ -1037,80 +1083,21 @@
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
-  <!-- ── FORMATS ── -->
-  <section id="formats">
-    <div class="formats-head">
-      <span class="section-label reveal">Форматы</span>
-      <h2 class="reveal d1">С чем можно прийти</h2>
-      <p class="reveal d2">Каждый проект начинается с разговора. Расскажите, что вам важно — дальше разберёмся вместе.</p>
-    </div>
-
-    <div class="formats-grid">
-      <div class="fmt-card reveal">
-        <span class="fmt-num">01</span>
-        <div class="fmt-title">Закрытый ужин</div>
-        <div class="fmt-desc">Камерный вечер на 8–16 человек. Несколько перемен блюд, одна история на весь ужин. Меню не повторяется — шеф собирает его под сезон и повод.</div>
-      </div>
-      <div class="fmt-card reveal d1">
-        <span class="fmt-num">02</span>
-        <div class="fmt-title">Мастер-класс</div>
-        <div class="fmt-desc">Не рецепт, а понимание: почему тесто дышит, зачем зерну время, как работает жар. Уйдёте не с записью — а с руками, которые запомнили.</div>
-      </div>
-      <div class="fmt-card reveal d2">
-        <span class="fmt-num">03</span>
-        <div class="fmt-title">Консультация</div>
-        <div class="fmt-desc">Запуск ресторана, инженерия меню, управление себестоимостью. Помогаю проектам найти баланс между «вау» на тарелке и здоровой маржой.</div>
-      </div>
-    </div>
-
-    <div class="formats-bottom reveal">
-      <p class="fmt-note">Анонсы ближайших вечеров — в Telegram</p>
-      <p class="fmt-note-sub">Там же — процессы, продукты и кухонные истории</p>
-      <a href="https://t.me/havaite" target="_blank" class="subscribe-btn">
-        Telegram-канал
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ── PAST EVENTS ── -->
-  <section id="past-events">
-    <div class="past-head">
-      <span class="section-label reveal">Избранные вечера</span>
-      <h2 class="reveal d1">Прошедшие ужины</h2>
-      <p class="reveal d2">Каждый вечер — отдельная тема, отдельное меню. Ни один не повторяется.</p>
-    </div>
-
-    <div class="past-grid">
-      <div class="past-card reveal">
-        <div class="past-tag">Гастроужин</div>
-        <div class="past-title">Буррата с томатами, испанские тапас, свиная шея с демигласом, сорбет и эклеры</div>
-      </div>
-      <div class="past-card reveal d1">
-        <div class="past-tag">Гастроужин</div>
-        <div class="past-title">Тар-тар из тунца, фуа-гра с малиной, равиоли, гречневая лапша, десерт шу</div>
-      </div>
-      <div class="past-card reveal d2">
-        <div class="past-tag">Гастроужин</div>
-        <div class="past-title">Скумбрия су-вид, гель из лука, ризотто с белыми грибами, мильфей с малиной</div>
-      </div>
-      <div class="past-card reveal">
-        <div class="past-tag">Гастроужин</div>
-        <div class="past-title">Гребешок, карпаччо, стейк миньон с гратеном, сорбет и тыква</div>
-      </div>
-      <div class="past-card reveal d1">
-        <div class="past-tag">Новый год</div>
-        <div class="past-title">Новогодний гастроужин — сет из 8 блюд</div>
-      </div>
-    </div>
+  <!-- ── PRIVATE ── -->
+  <section id="private" class="private-section">
+    <span class="section-label reveal">Private</span>
+    <h2 class="reveal d1">Иногда ресторан можно не бронировать.</h2>
+    <p class="reveal d2">Частные ужины, гастрономические мероприятия и индивидуальные проекты.</p>
+    <p class="reveal d2">Разрабатываю меню под событие, формат и гостей. При необходимости беру на себя весь гастрономический процесс — от идеи и продуктов до приготовления и подачи.</p>
+    <a class="section-cta reveal d3" href="#contact">Обсудить частный проект →</a>
   </section>
 
   <!-- ── CONTACT ── -->
   <section id="contact">
     <div class="contact-inner">
-      <h2 class="reveal">Написать Никите</h2>
-      <span class="contact-sub reveal d1">Начинается с разговора</span>
-      <p class="contact-note reveal d1">Расскажите, что вы задумали — предложу формат и меню под ваш вечер. Отвечу в течение дня.</p>
+      <h2 class="reveal">Есть проект? Давайте обсудим.</h2>
+      <span class="contact-sub reveal d1">Ресторан, съёмка, коллаборация, гастрономический проект или что-то, для чего ещё не придумали название.</span>
+      <p class="contact-note reveal d1">Расскажите о задаче — посмотрим, что из неё можно сделать.</p>
 
       <div class="contact-links reveal d2">
         <a href="https://t.me/havaite" target="_blank">Telegram</a>
@@ -1152,6 +1139,7 @@
       <div class="form-ok" id="formOk">
         <p>Спасибо! Свяжусь с вами<br>в течение дня.</p>
       </div>
+      <p class="contact-geo">Санкт-Петербург · Москва · выездные проекты</p>
     </div>
   </section>
 
@@ -1242,7 +1230,7 @@
             a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
       });
     }, { threshold: 0.3 });
-    ['about','gallery','formats','contact'].forEach(id => {
+    ['about','media','restaurants','gallery','private','contact'].forEach(id => {
       const el = document.getElementById(id);
       if (el) sio.observe(el);
     });
