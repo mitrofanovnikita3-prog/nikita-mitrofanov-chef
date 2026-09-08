@@ -894,7 +894,7 @@
     }
     .stat-card, .phil-item, .fmt-card, .past-card { background: rgba(250,248,241,.62); }
     .g-card { border-radius: 26px; box-shadow: 0 18px 42px rgba(50,28,17,.14); }
-    .g-card-bg { filter: saturate(.88) contrast(1.02); }
+    .g-card-bg { background: var(--surface); filter: saturate(.88) contrast(1.02); }
     .ff input, .ff select, .ff textarea {
       background: rgba(250,248,241,.74); color: var(--t1);
       border-color: var(--border-m); border-radius: 14px;
@@ -1002,7 +1002,7 @@
   <!-- ── HERO ── -->
   <section id="hero">
     <div class="hero-video">
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline preload="metadata">
         <source src="hero-video.mp4" type="video/mp4">
       </video>
     </div>
@@ -1056,9 +1056,9 @@
       <a class="section-cta reveal d3" href="bloggers.html">Смотреть медийные проекты →</a>
     </div>
     <div class="media-strip reveal d2">
-      <img src="gallery-1.jpg" alt="Никита Митрофанов на съёмке" loading="lazy">
-      <img src="gallery-3.jpg" alt="Медийный проект с участием Никиты" loading="lazy">
-      <img src="gallery-5.jpg" alt="Работа в кадре" loading="lazy">
+      <img src="gallery-1.jpg" alt="Никита Митрофанов на съёмке" loading="lazy" decoding="async" width="768" height="1152">
+      <img src="gallery-3.jpg" alt="Медийный проект с участием Никиты" loading="lazy" decoding="async" width="768" height="1152">
+      <img src="gallery-5.jpg" alt="Работа в кадре" loading="lazy" decoding="async" width="768" height="1152">
     </div>
   </section>
 
@@ -1153,18 +1153,51 @@
     <div class="footer-copy">© 2026 Никита Митрофанов</div>
   </footer>
 
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-
   <script>
     /* ── LENIS SMOOTH SCROLL ── */
-    const lenis = new Lenis({
-      duration: 1.3,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const useLenis = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduced;
+    let lenis = null;
+
+    if (useLenis) {
+      const lenisScript = document.createElement('script');
+      lenisScript.src = 'https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js';
+      lenisScript.onload = () => {
+        lenis = new Lenis({
+          duration: 1.3,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        const raf = (time) => {
+          if (!lenis) return;
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+      };
+      document.head.appendChild(lenisScript);
+    }
+
+    /* ── HERO VIDEO: decode only while relevant ── */
+    const heroVideo = document.querySelector('.hero-video video');
+    const heroSection = document.getElementById('hero');
+    if (heroVideo && heroSection) {
+      const syncHeroVideo = (visible) => {
+        if (visible && document.visibilityState === 'visible') {
+          heroVideo.play().catch(() => {});
+        } else {
+          heroVideo.pause();
+        }
+      };
+      const videoObserver = new IntersectionObserver(
+        ([entry]) => syncHeroVideo(entry.isIntersecting),
+        { rootMargin: '160px 0px' }
+      );
+      videoObserver.observe(heroSection);
+      document.addEventListener('visibilitychange', () =>
+        syncHeroVideo(heroSection.getBoundingClientRect().bottom > -160 && heroSection.getBoundingClientRect().top < innerHeight + 160)
+      );
+    }
 
     /* ── BURGER MENU ── */
     const burger = document.getElementById('burger');
@@ -1207,12 +1240,23 @@
       const card = document.createElement('div');
       card.className = 'g-card reveal';
       card.style.transitionDelay = (i % 2 * 0.12) + 's';
-      card.innerHTML = `<img class="g-card-bg" src="${d.img}" alt="${d.name}" style="aspect-ratio:${d.ratio};object-fit:cover;width:100%" loading="lazy"><div class="g-card-over"><span class="g-card-name">${d.name}</span></div>`;
+      const [ratioWidth, ratioHeight] = d.ratio.split('/').map(Number);
+      card.innerHTML = `<img class="g-card-bg" data-src="${d.img}" alt="${d.name}" width="${ratioWidth * 100}" height="${ratioHeight * 100}" style="aspect-ratio:${d.ratio};object-fit:cover;width:100%" loading="lazy" decoding="async" fetchpriority="low"><div class="g-card-over"><span class="g-card-name">${d.name}</span></div>`;
       grid.appendChild(card);
     });
 
+    const galleryImageObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const image = entry.target;
+        image.src = image.dataset.src;
+        image.removeAttribute('data-src');
+        galleryImageObserver.unobserve(image);
+      });
+    }, { rootMargin: '450px 0px' });
+    grid.querySelectorAll('.g-card-bg[data-src]').forEach(image => galleryImageObserver.observe(image));
+
     /* ── SCROLL REVEAL (IntersectionObserver) ── */
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduced) {
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -1302,7 +1346,11 @@
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const t = document.querySelector(a.getAttribute('href'));
-        if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -60 }); }
+        if (t) {
+          e.preventDefault();
+          if (lenis) lenis.scrollTo(t, { offset: -60 });
+          else t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }
       });
     });
   </script>
